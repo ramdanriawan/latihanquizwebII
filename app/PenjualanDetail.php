@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pembelian extends Model
+class PenjualanDetail extends Model
 {
+    //
     protected $guarded = [];
+    public $timestamps = false;
 
     public function barang()
     {

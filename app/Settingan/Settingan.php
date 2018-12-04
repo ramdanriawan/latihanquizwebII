@@ -495,7 +495,7 @@ class Settingan extends Model
 
         //inisialisasi form
         $input .= "
-            <form action='/admin/{$this->halaman}' method='post' enctype='multipart/form-data'>
+            <form action='/admin/{$this->halaman}' method='post' enctype='multipart/form-data' id='{$this->halaman}Create'>
             {$csrf_field}
         ";
 
@@ -559,7 +559,7 @@ class Settingan extends Model
             elseif($columnType == 'integer'){
                 $input .= "
                 <label>{$inputLabel}</label>
-                <input class='form-control' type='number' name='$column' placeholder='{$inputLabel}...'/>";
+                <input class='form-control' type='number' name='$column' placeholder='{$inputLabel}...' autocomplete='off'/>";
             }
             elseif($columnType == 'text'){
                 $input .= "

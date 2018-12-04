@@ -22,8 +22,39 @@
                                @endforeach
                            </tr>
                        </thead>
-                       <tbody>
-                         {!! $setTbody !!}
+                       {{-- ini buat ngatasi setEditForm kalo di foreach pakai cara biasa --}}
+                        @php
+                         $datasSetEditFormTemp = $datas['setEditForm'];
+                          unset($datas['setEditForm']);
+                        @endphp
+
+                        @foreach($datas as $data) 
+                          {{-- {{ dd( $data->barang->nama ) }} --}}
+                          <tr> 
+                            <td> {{ $loop->iteration }} </td>
+                            <td> <a href="/admin/penjualan/penjualandetail/{{$data->id}}">{{ $data->pelanggan->nama }} </a> </td>
+                            <td> {{ $data->barang->nama }} </td>
+                            <td> {{ $data->harga_per_item }} </td>
+                            <td> {{ $data->stok }} </td>
+                            <td> {{ $data->jumlah }} </td>
+                            <td> {{ $data->total_harga }} </td>
+                              <td>
+                                 <span class='btn-group btn-group-sm'>
+                                     <button class='btn btn-primary btn-sm indexBtnEdit' data-id='{{$data->id}}' data-toggle='modal' data-target='#editModal{{$data->id}}'>
+                                         <i class='far fa-edit'></i>
+                                     </button>
+                                     <form id='formDelete' action='/admin/{{ strtolower($halaman) }}/{{$data->id}}' method='post'>
+                                         {{csrf_field()}}
+                                         <input type='hidden' name='_method' value='DELETE'>
+                                     </form>
+                                     <button form='formDelete' class='btn btn-danger btn-sm btn-delete' type='submit' data-nama='{{$data->id}}' data-token='{{csrf_token()}}'> <i class='far fa-trash-alt'></i>
+                                     </button>
+                                 </span>
+
+                            </td>
+                          </tr>
+                        @endforeach
+                         {{-- {!! $setTbody !!} --}}
                        </tbody>
                    </table>
                 </div>
@@ -76,6 +107,7 @@
   </div>
 </div>
 
+@php $datas['setEditForm'] = $datasSetEditFormTemp @endphp
 @foreach($datas as $data)
         {{--  ini adalah modal untuk edit barang yang ada di tiap row tabel --}}
         <div id="editModal{{$data->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

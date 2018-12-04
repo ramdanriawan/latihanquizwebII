@@ -285,5 +285,89 @@ $(document).ready(function() {
         });
     });
 
-    //script untuk
+    //script untuk menghitung total penjualan pada penjualan tambah dan juga penjualan edit
+    $(document).on('change', 'select[name=id_barangs]', function(event){
+        var This = $(this);
+
+        $.ajax({
+            url: `/admin/barang/${This.val()}`,
+            success: function(response){
+
+                $('input[name=harga_per_item]').val(response.harga_jual);
+                $('input[name=stok]').val(response.stok);
+            }
+        });
+    });
+
+    // untuk menghitung total harga penjualan
+    $(document).on('keyup', 'input[name=jumlah]', function(event){
+        var harga_per_item = $('input[name=harga_per_item]').val();
+
+        $('input[name=total_harga]').val(harga_per_item * $(this).val());
+    });
+
+    // untuk mengatasi pembeli memasukkan jumlah yang melebihi stok
+    $(document).on('submit', '#penjualanCreate', function(event){
+        var jumlah = parseInt($('input[name=jumlah]').val());
+        var stok = parseInt($('input[name=stok]').val());
+
+        if(jumlah > stok){
+            swal({
+                type: 'error',
+                title: 'Stok Kurang',
+                text: 'Jumlah item yang dibeli melebihi stok',
+                timer: 1000,
+                toast: true,
+                showConfirmButton: false
+            });
+
+            event.preventDefault();
+        }
+    });
+
+    //script untuk menghitung total penjualan pada penjualan detail
+    $(document).on('change', 'form#penjualanDetailsCreate select[name=barang_id]', function(event){
+        var This = $(this);
+
+        $.ajax({
+            url: `/admin/barang/${This.val()}`,
+            success: function(response){
+
+                $('form#penjualanDetailsCreate input[name=harga_per_item]').val(response.harga_jual);
+                $('form#penjualanDetailsCreate input[name=stok]').val(response.stok);
+            }
+        });
+    });
+
+    // untuk menghitung total harga penjualan detail
+    $(document).on('keyup', 'form#penjualanDetailsCreate input[name=jumlah]', function(event){
+        var harga_per_item = $('form#penjualanDetailsCreate input[name=harga_per_item]').val();
+
+        $('form#penjualanDetailsCreate input[name=total_harga]').val(harga_per_item * $(this).val());
+    });
+
+    // untuk mengatasi pembeli memasukkan jumlah yang melebihi stok
+    $(document).on('submit', '#form#penjualanDetailsCreate', function(event){
+        var jumlah = parseInt($('form#penjualanDetailsCreate input[name=jumlah]').val());
+        var stok = parseInt($('form#penjualanDetailsCreate input[name=stok]').val());
+
+        if(jumlah > stok){
+            swal({
+                type: 'error',
+                title: 'Stok Kurang',
+                text: 'Jumlah item yang dibeli melebihi stok',
+                timer: 1000,
+                toast: true,
+                showConfirmButton: false
+            });
+
+            event.preventDefault();
+        }
+    });
+
+    // berguna untuk print penjualan detail
+
+    $('#printPenjualanDetail').on('click', function(){
+        window.print();
+    });
 });

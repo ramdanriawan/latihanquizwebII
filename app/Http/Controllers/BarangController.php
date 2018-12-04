@@ -30,8 +30,16 @@ class BarangController extends Controller
 
     public function show(Barang $barang)
     {
+        // unset gambar karena tidak diperlukan
+        unset($barang['gambar']);
 
-        return $this->settingan->setShow($barang);
+        // kirim response sebagai json
+        $response = response()->json($barang);
+
+        // return response berupa json
+        return $response;
+
+        // return $this->settingan->setShow($barang);
     }
 
     public function edit(Barang $barang)

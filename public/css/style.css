@@ -25,3 +25,10 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+@media print {
+  .hidePrint {
+    display: none;
+  }
+
+}
