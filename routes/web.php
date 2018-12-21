@@ -1,8 +1,10 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', 'FrontController@index');
 
 Auth::routes();
 
@@ -21,6 +23,13 @@ Route::prefix('admin')->middleware("auth")->group(function(){
     Route::get('penjualan/penjualandetail/{penjualan_id}', 'PenjualanController@penjualanDetail');
 
     Route::resource('kategoryn', 'KategorynController');
+
+    // ini route untuk membuat laporan dari bapak dari bapak
+    Route::get('laporan/barang','LaporanController@barang');
+	Route::get('laporan/pelanggan','LaporanController@pelanggan');
+	Route::get('laporan/transaksi','LaporanController@transaksi');
+	Route::get('laporan/penjualan','LaporanController@penjualan');
+	Route::get('laporan/pembelian','LaporanController@pembelian');
 });
 
 Auth::routes();

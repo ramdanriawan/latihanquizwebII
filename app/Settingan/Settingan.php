@@ -479,7 +479,6 @@ class Settingan extends Model
     public function setCreateForm($errors)
     {
         $columns = Schema::getColumnListing($this->halaman.'s');
-
         //unset id, unset created_at, unset updated_at
         array_shift($columns);
         array_pop($columns);
@@ -501,7 +500,6 @@ class Settingan extends Model
 
         foreach($columns as $column){
             $columnType = Schema::getColumnType($this->halaman.'s', $column);
-
             //untuk membuat jarak
             $input .= "
                 <div class='form-group'>

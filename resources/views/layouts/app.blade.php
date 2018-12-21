@@ -92,6 +92,25 @@
                                @endforeach
                           </div>
                        </li>
+
+                          {{-- menu untuk print laporan --}}
+                          <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                              Laporan <span class="caret"></span>
+                            </a>
+                                 <div class="dropdown-menu">
+                                   <a class="dropdown-item" onclick="window.open('{{ url('admin/laporan/barang') }}', '_blank', 'width=100');" style='cursor: pointer;'>
+                                     Laporan Data Barang
+                                   </a>
+                                   <a class="dropdown-item" onclick="window.open('{{ url('admin/laporan/pelanggan') }}', '_blank', 'width=100');" style='cursor: pointer;'>
+                                     Laporan Data Pelanggan
+                                   </a>
+                                   <div class="dropdown-divider"></div>
+                                   <a class="dropdown-item" href="{{ url('admin/laporan/transaksi') }}" >
+                                     Laporan Transaksi
+                                   </a>
+                                </div>
+                            </li>
                       @endauth
                     </ul>
 

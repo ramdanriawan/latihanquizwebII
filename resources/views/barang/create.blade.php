@@ -12,8 +12,6 @@
                     @include('layouts.partials.success')
 
                     {!! $datas['setCreateForm']->setCreateForm($errors) !!}
-
-
                 </div>
             </div>
         </div>
