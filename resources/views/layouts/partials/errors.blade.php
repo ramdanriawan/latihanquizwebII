@@ -1,9 +1,9 @@
-@if(count($errors) > 0)
+@if(session()->has('error'))
     <script>
         swal({
           position: 'center',
           type: 'error',
-          title: "Periksa kembali data anda",
+          title: '{{ session()->get('error') }}',
           showConfirmButton: false,
           timer: 1500
         });

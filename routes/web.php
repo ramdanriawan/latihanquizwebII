@@ -1,17 +1,27 @@
 <?php
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+//untuk front controller 
 Route::get('/', 'FrontController@index');
+
+// untuk daftar
+Route::get('/member/daftar', 'MemberController@daftar');
+Route::post('/member/simpandaftar', 'MemberController@simpanDaftar');
+Route::post('/member/proseslogin', 'MemberController@prosesLogin');
+
+Route::get('/member/login', 'MemberController@login');
+
+Route::prefix('member')->middleware(['member2'])->group(function(){
+    
+    // untuk beranda ketika user berhasil login
+    Route::get('beranda', 'MemberController@beranda');
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::model('user', 'User');
 
-Route::prefix('admin')->middleware("auth")->group(function(){
+Route::prefix('admin')->middleware("admin")->group(function(){
     Route::resource('pelanggan', 'PelangganController');
     Route::resource('barang', 'BarangController');
     Route::resource('pembelian', 'PembelianController');
@@ -35,3 +45,7 @@ Route::prefix('admin')->middleware("auth")->group(function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/test', function(){
+    return Hash::check('mautauajakamu98', '$2y$10$3dHAbWHXRfcdx3JeFUWg9uZIE/59yvY5UF6bUnUGIKix68Uf3reCe') ? 'benar' : 'salah';
+});

@@ -13,4 +13,9 @@ class FrontController extends Controller
 
     	return view('front_utama', $data);
     }
+
+    public function daftar()
+    {
+    	return view('front_daftar');
+    }
 }

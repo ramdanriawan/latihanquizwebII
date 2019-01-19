@@ -19,9 +19,17 @@
     <!-- Custom styles for this template -->
     <link href="{{ asset('front/css/shop-homepage.css') }}" rel="stylesheet">
 
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- sweet alert -->
+    <script src="{{asset('node_modules/sweetalert2/dist/sweetalert2.all.min.js')}}" charset="utf-8"></script>
+    <link rel="stylesheet" href="{{asset('node_modules/sweetalert2/dist/sweetalert2.min.css')}}">
   </head>
 
   <body>
+    @include('layouts.partials.success')
+    @include('layouts.partials.errors')
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -38,13 +46,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/barang">Produk</a>
+              <a class="nav-link" href="/">Produk</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Daftar</a>
+              <a class="nav-link" href="/member/daftar">Daftar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
+              <a class="nav-link" href="/member/login">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/login">Admin</a>
