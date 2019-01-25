@@ -15,9 +15,11 @@ class CekAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (!auth()->guard('admin'))
-            return redirect('/'); //user bukan admin
-        
+        if(\Auth::guard('admin')->check() == false)
+        {
+            return redirect('/login')->with('error','anda belum login'); //user belum login
+        }  
+
         return $next($request);
     }
 }

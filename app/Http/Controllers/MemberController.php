@@ -59,15 +59,20 @@ class MemberController extends Controller
 			'password' => $request->password
 		];
 
-		if ( Auth()->guard('member2')->attempt($login) )
+		if ( Auth()->guard('member')->attempt($login) )
 			return redirect('member/beranda');
 
-		return back()->with('error', 'Credentials invalid!');
+		return redirect('member/login')->with('error', 'Credentials invalid!');
 	}
 
 	public function beranda()
 	{
-		return 'berhasil login coeg';
+		return view('member.index');
+	}
+
+	public function produk()
+	{
+		return redirect('/');
 	}
 
 }

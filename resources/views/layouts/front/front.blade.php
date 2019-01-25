@@ -41,12 +41,12 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/">Beranda
+              <a class="nav-link" href="/member/beranda">Beranda
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/">Produk</a>
+              <a class="nav-link" href="/member/produk">Produk</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/member/daftar">Daftar</a>

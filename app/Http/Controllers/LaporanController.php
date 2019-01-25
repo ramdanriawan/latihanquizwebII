@@ -6,6 +6,7 @@ use App\Barang;
 use App\Pembelian;
 use App\Penjualan;
 use App\Pelanggan;
+use App\Satpam;
 use App\PenjualanDetail;
 
 class LaporanController extends Controller
@@ -56,5 +57,12 @@ class LaporanController extends Controller
 		$data['penjualans'] = Penjualan::whereBetween('created_at', [$mulai, $sampai])->get();
 
 		return view('laporan.penjualan', $data);
+	}
+
+	public function satpam()
+	{
+		$data['satpams'] = Satpam::all();
+
+		return view('laporan.satpam', $data);
 	}
 }

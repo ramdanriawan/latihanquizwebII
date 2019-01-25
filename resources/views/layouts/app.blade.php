@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 @php
     $dbName = DB::getDatabaseName();
-    $tables = DB::select("show tables where `Tables_in_$dbName` not in('users', 'migrations')");
+    $tables = DB::select("show tables where `Tables_in_$dbName` not in('users', 'migrations', 'members')");
 @endphp
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -104,6 +104,9 @@
                                    </a>
                                    <a class="dropdown-item" onclick="window.open('{{ url('admin/laporan/pelanggan') }}', '_blank', 'width=100');" style='cursor: pointer;'>
                                      Laporan Data Pelanggan
+                                   </a>
+                                   <a class="dropdown-item" onclick="window.open('{{ url('admin/laporan/pelanggan') }}', '_blank', 'width=100');" style='cursor: pointer;'>
+                                     Laporan Data Satpam
                                    </a>
                                    <div class="dropdown-divider"></div>
                                    <a class="dropdown-item" href="{{ url('admin/laporan/transaksi') }}" >
